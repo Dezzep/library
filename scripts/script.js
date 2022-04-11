@@ -26,6 +26,7 @@ function addBookToLibrary(array) {
     const elementRead = document.createElement("p");
     const elementButton = document.createElement("button");   //creates delete button
     elementButton.textContent = 'Delete'
+    elementButton.id = [i];
     const title = document.createTextNode(`Book Title: ${array[i].title}`); //refers to book object constructor
     const author = document.createTextNode(`Author: ${array[i].author}`);
     const pages = document.createTextNode(`Pages: ${array[i].pages}`);
@@ -58,9 +59,9 @@ function addBookToLibrary(array) {
     
   }
 }
-let duggler  =[
-book1 = new Book('hobbit', 'J.R.R. Tolkien', '295 pages', true),
-book2 = new Book('Taco', 'block', '25', false,)]
+// let duggler  =[
+// book1 = new Book('hobbit', 'J.R.R. Tolkien', '295 pages', true),
+// book2 = new Book('Taco', 'block', '25', false,)]
 
 
 let myLibrary = [book1 = new Book('hobbit', 'J.R.R. Tolkien', '295 pages', true),
@@ -70,8 +71,18 @@ addBookToLibrary(myLibrary)
 
 //let pppp = document.querySelector('#container .cards')
 
-let pppp = document.querySelectorAll('#container .cards').forEach(div => div.onclick = (e) => {
-  console.log("in onclick");
-  console.log(e.target);
+let delButton = document.querySelectorAll('#container .cards >button').forEach(div => div.onclick = (e) => {
+  const bleep = e.target.id
+  myLibrary.splice(bleep, 1);
+  const deleting = e.target.parentElement;
+  console.log(deleting.id);
+  console.log(myLibrary);
+  
+
+  
+  
+  
+  
+
 })
-// due for name change this is here for maybe later use. or reference
+
