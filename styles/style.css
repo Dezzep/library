@@ -1,0 +1,28 @@
+body{
+  width: 100vw;
+  height: 100vh;
+}
+
+#container{
+  
+  display: grid;
+
+ 
+  grid-template-columns: 1fr 1fr;
+ 
+
+ 
+  
+}
+
+.cards{
+  
+
+height:12em;
+  
+}
+
+.cards > h2 {
+  
+  
+}
