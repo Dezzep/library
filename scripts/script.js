@@ -1,8 +1,6 @@
 
 
-
-
-function Book(title, author, pages, wasRead){
+function Book(title, author, pages, wasRead){   //constructor for book
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -14,7 +12,7 @@ function Book(title, author, pages, wasRead){
       this.wasRead = 'Finished Reading'
     }}
 
-function addBookToLibrary(array) {
+function addBookToLibrary(array) {    //every time a form is submitted, this should be called.
   for (i in array){
     console.log(array[i])
     console.log(array[i].title)
@@ -26,7 +24,7 @@ function addBookToLibrary(array) {
     const elementRead = document.createElement("p");
     const elementButton = document.createElement("button");   //creates delete button
     elementButton.textContent = 'Delete'
-    elementButton.id = [i];
+    elementButton.id = [i]; // reasoning = to know where in myLibrary array to delete
     const title = document.createTextNode(`Book Title: ${array[i].title}`); //refers to book object constructor
     const author = document.createTextNode(`Author: ${array[i].author}`);
     const pages = document.createTextNode(`Pages: ${array[i].pages}`);
@@ -48,15 +46,6 @@ function addBookToLibrary(array) {
     document.getElementById(`book${i}`).appendChild(elementPages);
     document.getElementById(`book${i}`).appendChild(elementRead);
     document.getElementById(`book${i}`).appendChild(elementButton);
-
-
-    
-
-
-    
-    
-
-    
   }
 }
 // let duggler  =[
@@ -72,17 +61,30 @@ addBookToLibrary(myLibrary)
 //let pppp = document.querySelector('#container .cards')
 
 let delButton = document.querySelectorAll('#container .cards >button').forEach(div => div.onclick = (e) => {
-  const bleep = e.target.id
-  myLibrary.splice(bleep, 1);
-  const deleting = e.target.parentElement;
-  console.log(deleting.id);
-  console.log(myLibrary);
-  
-
-  
-  
-  
-  
+  const removeFromArray = e.target.id // this selects the button which is created with a unique ID of n of the array
+  myLibrary.splice(removeFromArray, 1);
+  const deleting = e.target.parentElement; 
+  deleting.remove();
 
 })
 
+const addForm = document.forms["book-form"];
+
+addForm.addEventListener("submit", function(e){  // takes form input, WILL (ADDS TO ARRAY).
+
+  e.preventDefault();
+  let bookTitle = document.getElementById("book-title").value; 
+  let authorName = document.getElementById("author").value;
+  let pageCount = document.getElementById("pages").value;
+
+  
+  
+  addForm.style.display="none";
+  addForm.style.display="block";
+
+  console.log(pageCount);
+  console.log(authorName);
+  console.log(bookTitle);
+
+  addForm.reset();
+});
