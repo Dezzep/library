@@ -1,5 +1,5 @@
-
-
+let myLibrary = [];
+let storeDeletedArray = []; //stores indexes of delete button press for later use
 function Book(title, author, pages, wasRead){   //constructor for book
   this.title = title;
   this.author = author;
@@ -11,12 +11,21 @@ function Book(title, author, pages, wasRead){   //constructor for book
     else{
       this.wasRead = 'Finished Reading'
     }}
+           
+function storeDelArray(deletedItems){ //stores the array of deleted items
+  storeDeletedArray.push(deletedItems); //later sorts them from last index to first and deleted
+  
+}
+
+
 
 function addBookToLibrary(array) {    //every time a form is submitted, this should be called.
+  
+ 
+    
+  
   for (i in array){
-    console.log(array[i])
-    console.log(array[i].title)
-
+   
     const div = document.createElement("div");            
     const elementTitle = document.createElement("p");     //creates paragraphs to store content
     const elementAuthor = document.createElement("p");
@@ -35,8 +44,6 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     elementPages.appendChild(pages);
     elementRead.appendChild(read);
 
-    
-    
     div.style.background = 'red';
     div.setAttribute('class', 'cards');
     div.id = `book${i}`
@@ -47,44 +54,52 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     document.getElementById(`book${i}`).appendChild(elementRead);
     document.getElementById(`book${i}`).appendChild(elementButton);
   }
+  document.querySelectorAll('#container .cards >button').forEach(div => div.onclick = (e) => {
+    const removeFromArray = e.target.id // this selects the button which is created with a unique ID of n of the array
+    storeDelArray(removeFromArray);
+    
+    const deleting = e.target.parentElement; 
+    deleting.remove();
+  })
 }
-// let duggler  =[
-// book1 = new Book('hobbit', 'J.R.R. Tolkien', '295 pages', true),
-// book2 = new Book('Taco', 'block', '25', false,)]
-
-
-let myLibrary = [book1 = new Book('hobbit', 'J.R.R. Tolkien', '295 pages', true),
-book2 = new Book('Taco', 'block', '25', false,)]
-addBookToLibrary(myLibrary)
-
-
-//let pppp = document.querySelector('#container .cards')
-
-let delButton = document.querySelectorAll('#container .cards >button').forEach(div => div.onclick = (e) => {
-  const removeFromArray = e.target.id // this selects the button which is created with a unique ID of n of the array
-  myLibrary.splice(removeFromArray, 1);
-  const deleting = e.target.parentElement; 
-  deleting.remove();
-
-})
 
 const addForm = document.forms["book-form"];
-
-addForm.addEventListener("submit", function(e){  // takes form input, WILL (ADDS TO ARRAY).
+addForm.reset();
+addForm.addEventListener("submit", function(e){  // takes form input
 
   e.preventDefault();
   let bookTitle = document.getElementById("book-title").value; 
   let authorName = document.getElementById("author").value;
   let pageCount = document.getElementById("pages").value;
-
   
+  
+  const removeChilds = (parent) => {
+    while (parent.lastChild) {
+      parent.removeChild(parent.lastChild);
+  }};
+    
+  
+  removeChilds(document.getElementById("container"));
+
+  storeDeletedArray.sort().reverse();
+   for (i in storeDeletedArray){
+
+    myLibrary.splice(storeDeletedArray[i], 1);
+   }
+  storeDeletedArray = [];         
+  
+   
+
   
   addForm.style.display="none";
   addForm.style.display="block";
+                                    
+  myLibrary.push(book = new Book(bookTitle, authorName, pageCount, true));
+  addBookToLibrary(myLibrary);
+  
+  
 
-  console.log(pageCount);
-  console.log(authorName);
-  console.log(bookTitle);
+  
 
   addForm.reset();
 });

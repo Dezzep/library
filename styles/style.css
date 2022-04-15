@@ -1,3 +1,9 @@
+*{
+  padding:0;
+  margin: 0;
+}
+
+
 body{
   width: 100vw;
   height: 100vh;
@@ -9,6 +15,7 @@ body{
 
  
   grid-template-columns: 1fr 1fr;
+  gap:20px;
  
 
  
@@ -19,10 +26,22 @@ body{
   
 
 
-max-width:15em;
 display:flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+padding:1em;
 
+}
+
+.cards > p {
+  min-width:auto;
+}
+
+.forms{
+  position:absolute;
+  bottom:50%;
+  left:50%;
+  margin-left:-200px;
+  
 }
