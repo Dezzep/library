@@ -10,17 +10,37 @@
 </head>
 <body>
   
-  <div class="forms">
-    <form action="" method="" id="book-form">
-      <label for="book-title">book-title</label>
-      <input type="text" name="book-title" id="book-title" required>
-      <label for="author">Author</label>
-      <input type="text" name="author" id="author" required>
-      <label for="pages">Pages</label>
-      <input type="number" name="pages" id="pages" required>
-      <button type="submit">Submit</button>
+  <div id="forms-container">
     
-    </form>
+      <form action="" method="" id="book-form">
+        
+          <label for="book-title">Book Title</label>
+          <input type="text" name="book-title" id="book-title" required>
+        
+        
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author" required>
+        
+        
+          <label for="pages">Pages</label>
+          <input type="number" name="pages" id="pages" required>
+
+          <div id="radio">
+            <div>
+              <input type="radio" name="status" id="finished" value="true" checked>
+              <label for="finished">Finished Reading</label>
+            </div>
+            <div>
+              <input type="radio" name="status" id="notfinished" value="false">
+              <label for="notfinished">Not Finished</label>
+            </div>
+          </div>
+
+        
+        <button type="submit">Submit</button>
+    
+      </form>
+    
   </div>
   
   <div id="container">
@@ -29,6 +49,7 @@
       </div>
   
   
+      <button id="show-form">Add a book</button>
   
   
   

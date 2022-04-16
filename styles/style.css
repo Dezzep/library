@@ -12,25 +12,26 @@ body{
 #container{
   
   display: grid;
-
  
-  grid-template-columns: 1fr 1fr;
-  gap:20px;
- 
-
- 
+  grid-template-columns: 1fr 1fr 1fr;
   
+  gap:10px;
+  
+
+   
 }
 
 .cards{
   
-
-
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding:1em;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:2em;
+  max-width: 30rem;
+  gap:1em;
+  
+  
 
 }
 
@@ -38,10 +39,65 @@ padding:1em;
   min-width:auto;
 }
 
-.forms{
-  position:absolute;
-  bottom:50%;
-  left:50%;
-  margin-left:-200px;
+
+#forms-container{
+ 
   
+  
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  position: absolute;
+  margin-left:auto;
+  margin-right:auto;
+  left:0;
+  right:0;
+  top:35%;
+ 
+  
+  width:10rem;
+  padding:2rem;
+  background-color: #FF9671;
+
+
+}
+
+form{
+  position:relative; 
+  /* display:grid; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+
+ 
+
+}
+form > button{
+  margin-top:10px;
+}
+
+
+
+input{
+  padding:4px;
+  margin-top:5px;
+  margin-bottom: 5px;
+ 
+}
+
+
+button{
+  padding:.5em;
+}
+
+#show-form{
+  position:absolute;
+  bottom:5em;
+  right:10em;
+}
+
+#radio{
+  display:flex;
+  flex-direction: column;
 }
