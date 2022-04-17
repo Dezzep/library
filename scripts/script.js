@@ -1,8 +1,10 @@
 const showForm = document.getElementById("show-form");
 const formContainer = document.getElementById("forms-container")
 let myLibrary = [];
-let storeDeletedArray = []; //stores indexes of delete button press for later use
-function Book(title, author, pages, wasRead){   //constructor for book
+//stores indexes of delete button press for later use
+let storeDeletedArray = []; 
+//constructor for book
+function Book(title, author, pages, wasRead){   
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -16,7 +18,8 @@ function Book(title, author, pages, wasRead){   //constructor for book
     }}
            
     const addForm = document.forms["book-form"];
-    addForm.addEventListener("submit", function(e){  // takes form input
+    // takes form input
+    addForm.addEventListener("submit", function(e){  
     
       e.preventDefault();
       let bookTitle = document.getElementById("book-title").value; 
@@ -54,26 +57,31 @@ function Book(title, author, pages, wasRead){   //constructor for book
 
 
 
-
-  function storeDelArray(deletedItems){ //stores the array of deleted items
-  storeDeletedArray.push(deletedItems); //later sorts them from last index to first and deleted
+  //stores the array of deleted items
+  function storeDelArray(deletedItems){ 
   
+  //later sorts them from last index to first and deleted
+  storeDeletedArray.push(deletedItems); 
 }
-
-function addBookToLibrary(array) {    //every time a form is submitted, this should be called.
+//every time a form is submitted, this should be called.
+function addBookToLibrary(array) {    
   
   for (i in array){
    
     const div = document.createElement("div");            
-    const elementTitle = document.createElement("p");     //creates paragraphs to store content
+    //creates paragraphs to store content
+    const elementTitle = document.createElement("p");     
     const elementAuthor = document.createElement("p");
     const elementPages = document.createElement("p");
     const elementRead = document.createElement("button");
-    const elementButton = document.createElement("button");   //creates delete button
+    //creates delete button
+    const elementButton = document.createElement("button");   
     elementButton.textContent = 'Delete'
-    elementButton.id = [i]; // reasoning = to know where in myLibrary array to delete
+    // reasoning = to know where in myLibrary array to delete
+    elementButton.id = [i]; 
     elementRead.id = [i]
-    const title = document.createTextNode(`Book Title: ${array[i].title}`); //refers to book object constructor
+    //refers to book object constructor
+    const title = document.createTextNode(`Book Title: ${array[i].title}`); 
     const author = document.createTextNode(`Author: ${array[i].author}`);
     const pages = document.createTextNode(`Pages: ${array[i].pages}`);
     const read = document.createTextNode(`${array[i].wasRead}`);
@@ -92,8 +100,9 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     div.style.background = '#FFC75F';
     div.setAttribute('class', 'cards');
     div.id = `book${i}`;
-    document.getElementById("container").appendChild(div);            //adds the elements and their contents
-    document.getElementById(`book${i}`).appendChild(elementTitle);    //to the div
+     //adds the elements and their contents
+    document.getElementById("container").appendChild(div);           
+    document.getElementById(`book${i}`).appendChild(elementTitle);   
     document.getElementById(`book${i}`).appendChild(elementAuthor);
     document.getElementById(`book${i}`).appendChild(elementPages);
     document.getElementById(`book${i}`).appendChild(elementRead);
@@ -102,7 +111,8 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     elementButton.setAttribute('class', 'delete-button');
   }
   document.querySelectorAll('#container .cards >.delete-button').forEach(div => div.onclick = (e) => {
-    const removeFromArray = e.target.id // this selects the button which is created with a unique ID of n of the array
+     // this selects the button which is created with a unique ID of n of the array
+    const removeFromArray = e.target.id
     storeDelArray(removeFromArray);
     
     const deleting = e.target.parentElement; 
@@ -110,7 +120,8 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
   });
 
   document.querySelectorAll('#container .cards >.read-status').forEach(div => div.onclick = (e) => {
-    let index = e.target.id; // this selects the button which is created with a unique ID of n of the array
+    // this selects the button which is created with a unique ID of n of the array
+    let index = e.target.id; 
     
     if(array[index].wasRead === 'Finished Reading'){
       array[index].wasRead = 'Not read yet';
@@ -126,8 +137,8 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
 }
 
 
-
-showForm.addEventListener('click', function handleClick(){      //shows or hides form in dom
+//shows or hides form in dom
+showForm.addEventListener('click', function handleClick(){      
 
   if (formContainer.style.display === 'none') {
     formContainer.style.display = 'block';
