@@ -1,3 +1,5 @@
+const showForm = document.getElementById("show-form");
+const formContainer = document.getElementById("forms-container")
 let myLibrary = [];
 let storeDeletedArray = []; //stores indexes of delete button press for later use
 function Book(title, author, pages, wasRead){   //constructor for book
@@ -18,12 +20,7 @@ function storeDelArray(deletedItems){ //stores the array of deleted items
   
 }
 
-
-
 function addBookToLibrary(array) {    //every time a form is submitted, this should be called.
-  
- 
-    
   
   for (i in array){
    
@@ -75,10 +72,6 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
   document.querySelectorAll('#container .cards >.read-status').forEach(div => div.onclick = (e) => {
     let index = e.target.id; // this selects the button which is created with a unique ID of n of the array
     
-
-    
-    
-
     if(array[index].wasRead === 'Finished Reading'){
       array[index].wasRead = 'Not read yet';
       e.target.style.background = "red";
@@ -89,28 +82,20 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
       e.target.style.background = "green";
       e.target.innerText = "Finished Reading"
     }
-
-   
-
-    
-  });
-  
-
+   });
 }
-
-
 
 const addForm = document.forms["book-form"];
 addForm.reset();
 addForm.addEventListener("submit", function(e){  // takes form input
 
+  
   e.preventDefault();
   let bookTitle = document.getElementById("book-title").value; 
   let authorName = document.getElementById("author").value;
   let pageCount = document.getElementById("pages").value;
   let valueResults = true;
  
-  
   if (document.getElementById('notfinished').checked){
     valueResults = false;
   }
@@ -119,7 +104,6 @@ addForm.addEventListener("submit", function(e){  // takes form input
     while (parent.lastChild) {
       parent.removeChild(parent.lastChild);
   }};
-    
   
   removeChilds(document.getElementById("container"));
 
@@ -130,31 +114,26 @@ addForm.addEventListener("submit", function(e){  // takes form input
    }
   storeDeletedArray = [];         
   
-   
-
-  
   addForm.style.display="none";
   addForm.style.display="block";
   
   myLibrary.push(book2 = new Book(bookTitle, authorName, pageCount, valueResults));
   addBookToLibrary(myLibrary);
   
-
-  
-  
   addForm.reset();
+  formContainer.style.display = 'none';
 });
 
-const showForm = document.getElementById("show-form");
-const formContainer = document.getElementById("forms-container")
+
 
 showForm.addEventListener('click', function handleClick(){      //shows or hides form in dom
 
   if (formContainer.style.display === 'none') {
     formContainer.style.display = 'block';
-    // document.body.style.background = 'black';  
+    const bookTitleSelect = document.getElementById("book-title");
+    bookTitleSelect.focus();
+    console.log(formContainer);
   }
-
   else{
     formContainer.style.display = 'none';
     
@@ -162,7 +141,6 @@ showForm.addEventListener('click', function handleClick(){      //shows or hides
 
 });
 
-const switchRead = document.getElementsByClassName('read-status');
 
 
 
