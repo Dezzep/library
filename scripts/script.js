@@ -7,6 +7,7 @@ function Book(title, author, pages, wasRead){   //constructor for book
   this.wasRead = wasRead;
   if (this.wasRead === false){
       this.wasRead = 'Not read yet';
+  
       }
     else{
       this.wasRead = 'Finished Reading'
@@ -30,10 +31,11 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     const elementTitle = document.createElement("p");     //creates paragraphs to store content
     const elementAuthor = document.createElement("p");
     const elementPages = document.createElement("p");
-    const elementRead = document.createElement("p");
+    const elementRead = document.createElement("button");
     const elementButton = document.createElement("button");   //creates delete button
     elementButton.textContent = 'Delete'
     elementButton.id = [i]; // reasoning = to know where in myLibrary array to delete
+    elementRead.id = [i]
     const title = document.createTextNode(`Book Title: ${array[i].title}`); //refers to book object constructor
     const author = document.createTextNode(`Author: ${array[i].author}`);
     const pages = document.createTextNode(`Pages: ${array[i].pages}`);
@@ -43,25 +45,60 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     elementAuthor.appendChild(author);
     elementPages.appendChild(pages);
     elementRead.appendChild(read);
+    
+    if (array[i].wasRead === "Finished Reading" ){
+    elementRead.style.background = "green"}
+     else{
+       elementRead.style.background = "red";
+     }
 
     div.style.background = '#FFC75F';
     div.setAttribute('class', 'cards');
-    div.id = `book${i}`
+    div.id = `book${i}`;
     document.getElementById("container").appendChild(div);            //adds the elements and their contents
     document.getElementById(`book${i}`).appendChild(elementTitle);    //to the div
     document.getElementById(`book${i}`).appendChild(elementAuthor);
     document.getElementById(`book${i}`).appendChild(elementPages);
     document.getElementById(`book${i}`).appendChild(elementRead);
+    elementRead.setAttribute('class', 'read-status');
     document.getElementById(`book${i}`).appendChild(elementButton);
+    elementButton.setAttribute('class', 'delete-button');
   }
-  document.querySelectorAll('#container .cards >button').forEach(div => div.onclick = (e) => {
+  document.querySelectorAll('#container .cards >.delete-button').forEach(div => div.onclick = (e) => {
     const removeFromArray = e.target.id // this selects the button which is created with a unique ID of n of the array
     storeDelArray(removeFromArray);
     
     const deleting = e.target.parentElement; 
     deleting.remove();
-  })
+  });
+
+  document.querySelectorAll('#container .cards >.read-status').forEach(div => div.onclick = (e) => {
+    let index = e.target.id; // this selects the button which is created with a unique ID of n of the array
+    
+
+    
+    
+
+    if(array[index].wasRead === 'Finished Reading'){
+      array[index].wasRead = 'Not read yet';
+      e.target.style.background = "red";
+      e.target.innerText= "Not read yet"
+    }
+    else{
+      array[index].wasRead = 'Finished Reading';
+      e.target.style.background = "green";
+      e.target.innerText = "Finished Reading"
+    }
+
+   
+
+    
+  });
+  
+
 }
+
+
 
 const addForm = document.forms["book-form"];
 addForm.reset();
@@ -71,11 +108,8 @@ addForm.addEventListener("submit", function(e){  // takes form input
   let bookTitle = document.getElementById("book-title").value; 
   let authorName = document.getElementById("author").value;
   let pageCount = document.getElementById("pages").value;
-  let boolValueTrue = document.getElementById("finished").value;
-  let boolValueFalse = document.getElementById("notfinished").value;
   let valueResults = true;
-  console.log(boolValueFalse);
-  console.log(boolValueTrue);
+ 
   
   if (document.getElementById('notfinished').checked){
     valueResults = false;
@@ -101,14 +135,13 @@ addForm.addEventListener("submit", function(e){  // takes form input
   
   addForm.style.display="none";
   addForm.style.display="block";
-                                    
-  myLibrary.push(book = new Book(bookTitle, authorName, pageCount, valueResults));
+  
+  myLibrary.push(book2 = new Book(bookTitle, authorName, pageCount, valueResults));
   addBookToLibrary(myLibrary);
   
-  
 
   
-
+  
   addForm.reset();
 });
 
@@ -128,3 +161,8 @@ showForm.addEventListener('click', function handleClick(){      //shows or hides
   }
 
 });
+
+const switchRead = document.getElementsByClassName('read-status');
+
+
+
