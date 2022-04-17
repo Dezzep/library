@@ -44,7 +44,7 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     elementRead.appendChild(read);
     
     if (array[i].wasRead === "Finished Reading" ){
-    elementRead.style.background = "green"}
+    elementRead.style.background = "#008B74"}
      else{
        elementRead.style.background = "red";
      }
@@ -79,7 +79,7 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
     }
     else{
       array[index].wasRead = 'Finished Reading';
-      e.target.style.background = "green";
+      e.target.style.background = "#008B74";
       e.target.innerText = "Finished Reading"
     }
    });
@@ -89,7 +89,6 @@ const addForm = document.forms["book-form"];
 addForm.reset();
 addForm.addEventListener("submit", function(e){  // takes form input
 
-  
   e.preventDefault();
   let bookTitle = document.getElementById("book-title").value; 
   let authorName = document.getElementById("author").value;
@@ -115,16 +114,14 @@ addForm.addEventListener("submit", function(e){  // takes form input
   storeDeletedArray = [];         
   
   addForm.style.display="none";
-  addForm.style.display="block";
+  addForm.style.display="block";                              
   
-  myLibrary.push(book2 = new Book(bookTitle, authorName, pageCount, valueResults));
+  myLibrary.push(book = new Book(bookTitle, authorName, pageCount, valueResults));
   addBookToLibrary(myLibrary);
   
   addForm.reset();
   formContainer.style.display = 'none';
 });
-
-
 
 showForm.addEventListener('click', function handleClick(){      //shows or hides form in dom
 
@@ -132,13 +129,11 @@ showForm.addEventListener('click', function handleClick(){      //shows or hides
     formContainer.style.display = 'block';
     const bookTitleSelect = document.getElementById("book-title");
     bookTitleSelect.focus();
-    console.log(formContainer);
+ 
   }
   else{
     formContainer.style.display = 'none';
-    
   }
-
 });
 
 
