@@ -15,7 +15,47 @@ function Book(title, author, pages, wasRead){   //constructor for book
       this.wasRead = 'Finished Reading'
     }}
            
-function storeDelArray(deletedItems){ //stores the array of deleted items
+    const addForm = document.forms["book-form"];
+    addForm.addEventListener("submit", function(e){  // takes form input
+    
+      e.preventDefault();
+      let bookTitle = document.getElementById("book-title").value; 
+      let authorName = document.getElementById("author").value;
+      let pageCount = document.getElementById("pages").value;
+      let valueResults = true;
+     
+      if (document.getElementById('notfinished').checked){
+        valueResults = false;
+      }
+      
+      const removeChilds = (parent) => {
+        while (parent.lastChild) {
+          parent.removeChild(parent.lastChild);
+      }};
+      
+      removeChilds(document.getElementById("container"));
+    
+      storeDeletedArray.sort().reverse();
+       for (i in storeDeletedArray){
+    
+        myLibrary.splice(storeDeletedArray[i], 1);
+       }
+      storeDeletedArray = [];         
+      
+      addForm.style.display="none";
+      addForm.style.display="block";                              
+      
+      myLibrary.push(book = new Book(bookTitle, authorName, pageCount, valueResults));
+      addBookToLibrary(myLibrary);
+      
+      addForm.reset();
+      formContainer.style.display = 'none';
+    });
+
+
+
+
+  function storeDelArray(deletedItems){ //stores the array of deleted items
   storeDeletedArray.push(deletedItems); //later sorts them from last index to first and deleted
   
 }
@@ -85,43 +125,7 @@ function addBookToLibrary(array) {    //every time a form is submitted, this sho
    });
 }
 
-const addForm = document.forms["book-form"];
-addForm.reset();
-addForm.addEventListener("submit", function(e){  // takes form input
 
-  e.preventDefault();
-  let bookTitle = document.getElementById("book-title").value; 
-  let authorName = document.getElementById("author").value;
-  let pageCount = document.getElementById("pages").value;
-  let valueResults = true;
- 
-  if (document.getElementById('notfinished').checked){
-    valueResults = false;
-  }
-  
-  const removeChilds = (parent) => {
-    while (parent.lastChild) {
-      parent.removeChild(parent.lastChild);
-  }};
-  
-  removeChilds(document.getElementById("container"));
-
-  storeDeletedArray.sort().reverse();
-   for (i in storeDeletedArray){
-
-    myLibrary.splice(storeDeletedArray[i], 1);
-   }
-  storeDeletedArray = [];         
-  
-  addForm.style.display="none";
-  addForm.style.display="block";                              
-  
-  myLibrary.push(book = new Book(bookTitle, authorName, pageCount, valueResults));
-  addBookToLibrary(myLibrary);
-  
-  addForm.reset();
-  formContainer.style.display = 'none';
-});
 
 showForm.addEventListener('click', function handleClick(){      //shows or hides form in dom
 
