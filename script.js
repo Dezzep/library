@@ -4,18 +4,21 @@ let myLibrary = [];
 //stores indexes of delete button press for later use
 let storeDeletedArray = []; 
 //constructor for book
-function Book(title, author, pages, wasRead){   
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.wasRead = wasRead;
-  if (this.wasRead === false){
+class Book {
+  constructor(title, author, pages, wasRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.wasRead = wasRead;
+    if (this.wasRead === false) {
       this.wasRead = 'Not read yet';
-  
-      }
-    else{
-      this.wasRead = 'Finished Reading'
-    }}
+
+    }
+    else {
+      this.wasRead = 'Finished Reading';
+    }
+  }
+}
            
     const addForm = document.forms["book-form"];
     // takes form input
