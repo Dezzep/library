@@ -1,0 +1,147 @@
+*{
+  padding:0;
+  margin: 0;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #FEF9ED;
+}
+
+#container{
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+}
+
+.cards{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:2em;
+  max-width: 30rem;
+  gap:1em;    
+  margin-top:6rem;
+  margin-left: .4em;
+  border:solid olive 2px;
+  border-radius:12px;
+}
+
+.cards > p {
+  min-width:auto;
+}
+
+#forms-container{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  position: absolute;
+  margin-left:auto;
+  margin-right:auto;
+  left:0;
+  right:0;
+  top:35%;
+  width:10rem;
+  padding:2rem;
+
+  background-color: #FF9671;
+}
+
+form{
+  position:relative; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+
+}
+form > button{
+  margin-top:10px;
+}
+
+
+input{
+  padding:4px;
+  margin-top:5px;
+  margin-bottom: 5px;
+ 
+}
+
+button{
+  padding:.65em;
+  padding-left:1.4em;
+  padding-right:1.4em;
+  border-radius:6px;
+}
+button:hover{
+  transform:scale(1.03)
+}
+
+#show-form{
+  position:absolute;
+  top:1em;
+  display:flex;
+  
+
+  background-color:#FF9671;
+  padding-top:.7em;
+  padding-bottom:.6em;
+  font-size:1em;
+  width:100%;
+  align-content:center;
+  justify-content: center;
+  margin-top:.2em;
+}
+
+#radio{
+  display:flex;
+  flex-direction: column;
+}
+
+.delete-button{
+  background-color: black;
+  color:white;
+  align-self:flex-end;
+}
+footer{
+  position:absolute;
+  top:0;
+  margin-left:1em;
+  
+
+  
+}
+
+input:invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+input:focus:invalid {
+  outline: none;
+}
+
+.error {
+  width  : 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
+#book-form{
+  display:flex;
+  gap:40px;
+  justify-content: center;
+  align-items: center;
+}
