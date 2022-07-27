@@ -1,5 +1,6 @@
 import app from './firebase';
 import './style.css'
+app();
 
 const showForm = document.getElementById("show-form");
 const formContainer = document.getElementById("forms-container")
