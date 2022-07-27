@@ -1,6 +1,20 @@
-import app from './firebase';
+
 import './style.css'
-app();
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from 'firebase/firestore/lite';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAmx8d0-Wf8cCNkxYEv6TW_vUoGhMpVI5c",
+  authDomain: "books-21fc0.firebaseapp.com",
+  projectId: "books-21fc0",
+  storageBucket: "books-21fc0.appspot.com",
+  messagingSenderId: "533085900527",
+  appId: "1:533085900527:web:3cad26625fae9de8b4951a"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+export { db };
+
 
 const showForm = document.getElementById("show-form");
 const formContainer = document.getElementById("forms-container")
