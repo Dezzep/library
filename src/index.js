@@ -1,5 +1,5 @@
 import app from './firebase';
-
+import './style.css'
 
 const showForm = document.getElementById("show-form");
 const formContainer = document.getElementById("forms-container")
@@ -45,7 +45,7 @@ class Book {
       removeChilds(document.getElementById("container"));
     
       storeDeletedArray.sort().reverse();
-       for (i in storeDeletedArray){
+       for (let i = 0; i < storeDeletedArray.length; i++){
     
         myLibrary.splice(storeDeletedArray[i], 1);
        }
@@ -53,8 +53,8 @@ class Book {
       
       addForm.style.display="none";
       addForm.style.display="block";                              
-      
-      myLibrary.push(book = new Book(bookTitle, authorName, pageCount, valueResults));
+   
+      myLibrary.push( new Book(bookTitle, authorName, pageCount, valueResults));
       addBookToLibrary(myLibrary);
       
       addForm.reset();
@@ -72,7 +72,7 @@ class Book {
 //every time a form is submitted, this should be called.
 function addBookToLibrary(array) {    
   
-  for (i in array){
+  for (let i = 0; i < array.length; i++){
    
     const div = document.createElement("div");            
     //creates paragraphs to store content
@@ -154,50 +154,5 @@ showForm.addEventListener('click', function handleClick(){
   }
   else{
     formContainer.style.display = 'none';
-  }
-});
-
-
-const form = document.getElementsByTagName('form')[0];
-
-const author = document.getElementById('author');
-const authorError = document.querySelector('#author + span.error');
-
-author.addEventListener('input', function (event){
-
-  if (author.validity.valid) {
-    authorError.textContent = '';
-    authorError.className = 'error';
-  } else {
-    showError();
-  }
-});
-
-
-function showError() {
-  if(author.validity.valueMissing) {
-    authorError.textContent = 'You need to enter an e-mail address.';
-  } else if(author.validity.typeMismatch) {
-    // If the field doesn't contain an author address,
-    // display the following error message.
-    authorError.textContent = 'Entered value needs to be an e-mail address.';
-  } else if(author.validity.tooShort) {
-    // If the data is too short,
-    // display the following error message.
-    authorError.textContent = `Email should be at least ${ author.minLength } characters; you entered ${ author.value.length }.`;
-  }
-
-  // Set the styling appropriately
-  authorError.className = 'error active';
-}
-  
-form.addEventListener('submit', function (event) {
-  // if the email field is valid, we let the form submit
-
-  if(!author.validity.valid) {
-    // If it isn't, we display an appropriate error message
-    showError();
-    // Then we prevent the form from being sent by canceling the event
-    event.preventDefault();
   }
 });
